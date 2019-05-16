@@ -20,7 +20,7 @@ func (rotReader rot13Reader) Read(b []byte) (n int, e error) {
 			b[i] = 'A' + (val-'A'+13)%26
 		}
 	}
-	return n,e
+	return n, e
 }
 
 func main() {

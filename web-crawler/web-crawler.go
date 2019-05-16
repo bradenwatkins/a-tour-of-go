@@ -7,7 +7,7 @@ import (
 
 type Cache struct {
 	vals map[string]bool
-	mut   sync.Mutex
+	mut  sync.Mutex
 }
 
 func (c *Cache) contains(url string) bool {
@@ -52,11 +52,11 @@ func Crawl(url string, depth int, fetcher Fetcher, cache *Cache, ret chan bool) 
 			close(children[i])
 		}
 	}
-	
+
 	for i := range children {
 		for s := range children[i] {
 			ret <- s
-		}	
+		}
 	}
 	return
 }
