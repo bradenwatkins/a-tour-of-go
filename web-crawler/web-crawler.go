@@ -6,21 +6,20 @@ import (
 )
 
 type Cache struct {
-	vals map[string]bool
 	mut  sync.Mutex
+	vals map[string]bool
 }
 
 func (c *Cache) contains(url string) bool {
 	c.mut.Lock()
+	defer c.mut.Unlock()
 	if c.vals == nil {
 		c.vals = make(map[string]bool)
 	}
 	if c.vals[url] {
-		c.mut.Unlock()
 		return true
 	}
 	c.vals[url] = true
-	c.mut.Unlock()
 	return false
 }
 

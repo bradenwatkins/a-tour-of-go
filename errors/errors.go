@@ -21,10 +21,8 @@ func Sqrt(x float64) (float64, error) {
 		return 0, ErrNegativeSqrt(x)
 	}
 	const epsilon = 1.0e-15
-	var (
-		z   = 1.0
-		old = x * x
-	)
+	z := 1.0
+	old := x * x
 	for delta := old - z; delta > epsilon; {
 		old = z
 		z -= (z*z - x) / (2 * z)
